@@ -1,5 +1,6 @@
 import { Category } from "./category";
 import { omit } from 'lodash';
+import { validate as uuidValidate } from "uuid";
 
 describe("Category Constructor", () => {
   it("should be created and returned category if description, is_active and created_at is not provided", () => {
@@ -96,4 +97,22 @@ describe("Category Constructor", () => {
         created_at
     });
 });
+
+it("should be create id successfully", () => {
+
+  let props = [
+      { name: 'any_name', id: 'd71de38f-620a-49c2-8dc5-2fafa1f7b09e' },
+      { name: 'any_name', id: null },
+      { name: 'any_name', id: undefined }
+  ];
+
+  props.forEach(prop => {
+      let category = new Category(prop);
+      expect(prop.id).not.toBeNull();
+      expect(uuidValidate(prop.id)).toBeTruthy();
+  });
+});
+
+
+  
 });

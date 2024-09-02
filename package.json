@@ -20,5 +20,9 @@
     "lodash": "^4.17.21",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "uuid": "^10.0.0"
   }
 }
