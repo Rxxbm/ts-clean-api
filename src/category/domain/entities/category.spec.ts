@@ -72,6 +72,28 @@ describe("Category Constructor", () => {
       description: 'any_description',
       is_active: false
   });
-
 });
-})
+
+  it("should be created and returned category if everything is provided", () => {
+
+    const created_at = new Date();
+
+    let props = {
+        id:'any_id',
+        name: 'any_name',
+        description: 'any_description',
+        is_active: true,
+        created_at
+    }
+
+    let category = new Category(props);
+
+    expect(category.props).toStrictEqual({
+        id:'any_id',
+        name: 'any_name',
+        description: 'any_description',
+        is_active: true,
+        created_at
+    });
+});
+});
