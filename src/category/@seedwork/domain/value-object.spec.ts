@@ -14,7 +14,9 @@ describe("ValueObject tests", () => {
             { value: undefined, expected: "undefined" },
             { value: NaN, expected: "NaN" },
             { value: true, expected: "true" },
-            { value: false, expected: "false" }
+            { value: false, expected: "false" },
+            { value: { a: 1 }, expected: JSON.stringify({ a: 1 }) },
+            { value: [1, 2, 3], expected: JSON.stringify([1, 2, 3]) },
         ];
 
         arrange.forEach(a => {
