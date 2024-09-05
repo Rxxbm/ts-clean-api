@@ -1,26 +1,23 @@
 import { UniqueEntityUUID } from '../../@seedwork/domain/unique-entity-uuid';
+import { Entity } from '../entity/entity';
 
 type props = {
-    id?: string;
     name: string;
     description?: string;
     is_active?: boolean;
     created_at?: Date;
 };
 
-export class Category{
+export class Category extends Entity<props>{
     constructor(
-        public readonly props: props
+        public readonly props: props,
+        id?: UniqueEntityUUID
     ){
-        this.props.id = this.props.id ?? UniqueEntityUUID.generate();
+        super(props, id);
         this.props.created_at = this.props.created_at ?? new Date();
         this.props.is_active = this.props.is_active ?? true;
         this.props.description = this.props.description ?? null;
     } 
-
-    get id(): string{
-        return this.props.id;
-    }
 
     get name(): string{
         return this.props.name;

@@ -108,8 +108,8 @@ it("should be create id successfully", () => {
 
   props.forEach(prop => {
       let category = new Category(prop);
-      expect(category.props.id).not.toBeNull();
-      expect(uuidValidate(category.props.id)).toBeTruthy();
+      expect(category.entityId).not.toBeNull();
+      expect(uuidValidate(category.entityId)).toBeTruthy();
   });
 });
 
