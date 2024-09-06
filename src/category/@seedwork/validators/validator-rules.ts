@@ -19,7 +19,11 @@ export class ValidatorRules {
   }
 
   maxLength(length: number) {
-    if (this.value.length > length) {
+    if (
+      this.value !== null &&
+      this.value !== undefined &&
+      this.value.length > length
+    ) {
       throw new Error(`${this.field} must be less than ${length} characters`);
     }
     return this;
@@ -33,8 +37,23 @@ export class ValidatorRules {
   }
 
   string() {
-    if (typeof this.value !== "string") {
+    if (
+      typeof this.value !== "string" &&
+      this.value !== null &&
+      this.value !== undefined
+    ) {
       throw new Error(`${this.field} must be a string`);
+    }
+    return this;
+  }
+
+  boolean() {
+    if (
+      typeof this.value !== "boolean" &&
+      this.value !== null &&
+      this.value !== undefined
+    ) {
+      throw new Error(`${this.field} must be a boolean`);
     }
     return this;
   }
