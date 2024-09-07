@@ -11,6 +11,14 @@ type props = {
 
 export class Category extends Entity<props> {
   constructor(public readonly props: props, id?: UniqueEntityUUID) {
+    Category.validate(props);
+    super(props, id);
+    this.props.created_at = this.props.created_at ?? new Date();
+    this.props.is_active = this.props.is_active ?? true;
+    this.description = this.props.description ?? null;
+  }
+
+  static validate(props: props): void {
     ValidatorRules.values(props.name, "name")
       .isRequired()
       .string()
@@ -20,19 +28,10 @@ export class Category extends Entity<props> {
       .string()
       .maxLength(255);
     ValidatorRules.values(props.is_active, "is_active").boolean();
-    super(props, id);
-    this.props.created_at = this.props.created_at ?? new Date();
-    this.props.is_active = this.props.is_active ?? true;
-    this.description = this.props.description ?? null;
   }
 
   update(name: string, description: string): void {
-    ValidatorRules.values(name, "name")
-      .isRequired()
-      .string()
-      .minLength(3)
-      .maxLength(50);
-    ValidatorRules.values(description, "description").string().maxLength(255);
+    Category.validate({ name, description });
     this.name = name;
     this.description = description;
   }

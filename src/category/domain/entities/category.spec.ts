@@ -2,6 +2,10 @@ import { Category } from "./category";
 import { omit } from "lodash";
 import { validate as uuidValidate } from "uuid";
 
+beforeEach(() => {
+  Category.validate = jest.fn();
+});
+
 describe("Category Constructor", () => {
   it("should be created and returned category if description, is_active and created_at is not provided", () => {
     let props = {
