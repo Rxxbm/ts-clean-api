@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest -- testRegex '\\.spec\\.ts$'",
+    "test:integrate": "jest --testRegex '\\.test\\.ts$'",
     "start": "ts-node src/index.ts"
   },
   "keywords": [],
