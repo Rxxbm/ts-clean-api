@@ -1,8 +1,9 @@
 import { ValidatorRules } from "../../@seedwork/validators/validator-rules";
 import { UniqueEntityUUID } from "../../@seedwork/domain/unique-entity-uuid";
 import { Entity } from "../entity/entity";
+import { categoryValidator } from "../validators/category-validator";
 
-type props = {
+export type props = {
   name: string;
   description?: string;
   is_active?: boolean;
@@ -19,15 +20,10 @@ export class Category extends Entity<props> {
   }
 
   static validate(props: props): void {
-    ValidatorRules.values(props.name, "name")
-      .isRequired()
-      .string()
-      .minLength(3)
-      .maxLength(50);
-    ValidatorRules.values(props.description, "description")
-      .string()
-      .maxLength(255);
-    ValidatorRules.values(props.is_active, "is_active").boolean();
+    const validator = categoryValidator.validate(props);
+    if (!validator) {
+      throw new Error(JSON.stringify(categoryValidator.errors));
+    }
   }
 
   update(name: string, description: string): void {
