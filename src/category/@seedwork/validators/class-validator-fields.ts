@@ -15,6 +15,7 @@ export abstract class ValidatorFields<PropsValidated>
   validate(data: any): boolean {
     const errors = validateSync(data);
     if (errors.length) {
+      this.errors = {};
       errors.forEach((error) => {
         const { property, constraints } = error;
         if (this.errors[property]) {
