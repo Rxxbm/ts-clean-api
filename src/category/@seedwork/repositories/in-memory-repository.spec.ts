@@ -17,6 +17,12 @@ describe("InMemoryRepository", () => {
     categoryRepository = new CategoryRepository();
   });
 
+  it("should throws error if id is invalid", () => {
+    expect(() => categoryRepository._getid("invalid-id")).rejects.toThrow(
+      "Entity not found"
+    );
+  });
+
   it("should save a category", async () => {
     const category = new Category({ name: "Category 1" });
     await categoryRepository.save(category);
