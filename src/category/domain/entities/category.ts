@@ -1,6 +1,5 @@
-import { ValidatorRules } from "../../@seedwork/validators/validator-rules";
 import { UniqueEntityUUID } from "../../@seedwork/domain/unique-entity-uuid";
-import { Entity } from "../entity/entity";
+import { Entity } from "../../@seedwork/entity/entity";
 import { categoryValidator } from "../validators/category-validator";
 
 export type props = {
